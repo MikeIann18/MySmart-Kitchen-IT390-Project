@@ -1,0 +1,377 @@
+/* My Smart Kitchen — Style Sheet */
+
+:root {
+  --teal:       #2f918e;
+  --teal-dark:  #085a6e;
+  --teal-deep:  #054555;
+  --teal-light: #e0f4f8;
+  --teal-mid:   #b2e0ec;
+  --cream:      #faf8f4;
+  --charcoal:   #1e2a2d;
+  --muted:      #5a7a82;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background: var(--teal);
+  color: white;
+  padding: 22px 40px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+/* Nav */
+nav {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  border-bottom: 1px solid var(--teal-mid);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 4px;
+}
+
+nav ul li a {
+  display: block;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.92rem;
+  padding: 18px 16px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+nav ul li a:hover {
+  color: var(--teal-dark) !important;
+  background: transparent !important;
+  border-bottom-color: var(--teal);
+}
+
+.nav-login { margin-left: 20px; }
+
+.login-btn {
+  background: var(--teal);
+  color: white !important;
+  padding: 9px 22px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.login-btn:hover {
+  background: var(--teal-dark) !important;
+  color: white !important;
+}
+
+/* Main layout */
+main {
+  display: flex;
+  gap: 24px;
+  padding: 40px;
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+/* Main content */
+.main-content {
+  flex: 2;
+  background: white;
+  padding: 40px;
+  border: 1px solid #ddd;
+}
+
+.main-content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: 10px;
+}
+
+.main-content > p {
+  color: var(--muted);
+  font-size: 1rem;
+  margin-bottom: 32px;
+}
+
+/* Ingredient section */
+.ingredient-section {
+  background: var(--teal-light);
+  padding: 24px;
+  border: 1px solid var(--teal-mid);
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.ingredient-input {
+  flex: 1;
+  padding: 11px 16px;
+  border: 1px solid var(--teal-mid);
+  font-size: 0.95rem;
+  background: white;
+  color: var(--charcoal);
+  outline: none;
+}
+
+.ingredient-input:focus { border-color: var(--teal); }
+
+.add-btn {
+  background: var(--teal);
+  color: white;
+  border: none;
+  padding: 11px 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.add-btn:hover { background: var(--teal-dark); }
+
+/* Tags */
+.tag-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 32px;
+}
+
+.tag {
+  background: var(--teal);
+  color: white;
+  padding: 5px 12px;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.tag button:hover { opacity: 0.7; }
+
+/* Filter section */
+.filter-section {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.filter-group h3 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-pill {
+  background: white;
+  color: var(--charcoal);
+  border: 1px solid #ccc;
+  padding: 7px 14px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.filter-pill:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.filter-pill.active {
+  background: var(--teal);
+  color: white;
+  border-color: var(--teal);
+}
+
+/* Sidebar */
+aside {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 72px;
+}
+
+aside blockquote {
+  background: var(--teal);
+  color: white;
+  padding: 24px;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+aside img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  max-height: 280px;
+}
+
+/* Page content (About, Contact) */
+.page-content {
+  max-width: 760px;
+  margin: 40px auto;
+  background: white;
+  padding: 48px;
+  border: 1px solid #ddd;
+}
+
+.page-content h2 {
+  font-size: 1.8rem;
+  color: var(--charcoal);
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--teal-light);
+}
+
+.page-content p {
+  color: var(--muted);
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+
+/* About cards */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.about-card {
+  background: var(--teal-light);
+  padding: 20px;
+  border: 1px solid var(--teal-mid);
+}
+
+.about-card h3 {
+  font-size: 1rem;
+  color: var(--teal-dark);
+  margin-bottom: 8px;
+}
+
+.about-card p { font-size: 0.9rem; margin: 0; }
+
+/* Contact form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.contact-form label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 11px 16px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  font-family: Arial, sans-serif;
+  color: var(--charcoal);
+  outline: none;
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus { border-color: var(--teal); }
+
+.contact-form button {
+  align-self: flex-start;
+  background: var(--teal);
+  color: white;
+  border: none;
+  padding: 11px 30px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.contact-form button:hover { background: var(--teal-dark); }
+
+/* Tooltip */
+#preview-tooltip {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--charcoal);
+  color: white;
+  padding: 7px 18px;
+  font-size: 0.85rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+  z-index: 999;
+}
+
+#preview-tooltip.visible { opacity: 1; }
+
+/* Footer */
+footer {
+  background: var(--teal-deep);
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  padding: 16px;
+  font-size: 0.85rem;
+  margin-top: auto;
+}

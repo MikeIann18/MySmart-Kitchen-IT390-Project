@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Smart Kitchen</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>My Smart Kitchen</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="SmartKitchen.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="nav-login">
+      <a href="login.html" class="login-btn">Login</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="main-content">
+      <h2>What's in your kitchen?</h2>
+      <p>Add your available ingredients and let AI generate personalized recipes for you</p>
+
+      <div class="ingredient-section">
+        <div class="input-row">
+          <input
+            type="text"
+            id="ingredient-input"
+            class="ingredient-input"
+            placeholder="Add an ingredient (e.g., chicken, tomatoes)..."
+          />
+          <button id="add-btn" class="add-btn">+ Add</button>
+        </div>
+        <div id="tag-area" class="tag-area"></div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-group">
+          <h3>Cuisine Type</h3>
+          <div class="filter-pills" id="cuisine-filters">
+            <button class="filter-pill" data-filter="italian">Italian</button>
+            <button class="filter-pill" data-filter="asian"> Asian</button>
+            <button class="filter-pill" data-filter="mexican">Mexican</button>
+            <button class="filter-pill" data-filter="mediterranean">Mediterranean</button>
+            <button class="filter-pill" data-filter="american">American</button>
+            <button class="filter-pill" data-filter="indian">Indian</button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h3>Dietary Preference</h3>
+          <div class="filter-pills" id="diet-filters">
+            <button class="filter-pill" data-filter="vegetarian">Vegetarian</button>
+            <button class="filter-pill" data-filter="vegan">Vegan</button>
+            <button class="filter-pill" data-filter="gluten-free">Gluten-Free</button>
+            <button class="filter-pill" data-filter="dairy-free">Dairy-Free</button>
+            <button class="filter-pill" data-filter="keto">Keto</button>
+            <button class="filter-pill" data-filter="low-carb">Low-Carb</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 My Smart Kitchen | Privacy Notice
+  </footer>
+
+  <div id="preview-tooltip"></div>
+  <script src="script.js"></script>
+</body>
+</html>
