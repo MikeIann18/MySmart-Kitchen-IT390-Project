@@ -1,5 +1,8 @@
 /* My Smart Kitchen — Style Sheet */
 
+
+/* Reusable color values used throughout the stylesheet,
+change a value here and it updates everywhere it's used  */
 :root {
   --teal:       #2f918e;
   --teal-dark:  #085a6e;
@@ -13,6 +16,7 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Body of page styling and column that lets the footer stick to the bottom */
 body {
   font-family: Arial, sans-serif;
   background: var(--cream);
@@ -23,7 +27,7 @@ body {
   line-height: 1.6;
 }
 
-/* Header */
+/* The teal banner at the top of every page, contains the "My Smart Kitchen" site title  */
 header {
   background: var(--teal);
   color: white;
@@ -36,7 +40,7 @@ header h1 {
   font-weight: 700;
 }
 
-/* Nav */
+/* White navigation bar*/
 nav {
   background: white;
   display: flex;
@@ -49,12 +53,14 @@ nav {
   z-index: 100;
 }
 
+/* Horizontal list of nav links */
 nav ul {
   list-style: none;
   display: flex;
   gap: 4px;
 }
 
+/* Individual nav link styling */
 nav ul li a {
   display: block;
   color: var(--muted);
@@ -66,14 +72,17 @@ nav ul li a {
   transition: color 0.2s, border-color 0.2s;
 }
 
+/* Hover effect shows blue underline on the active link and overrides any inline style from script.js  */
 nav ul li a:hover {
   color: var(--teal-dark) !important;
   background: transparent !important;
   border-bottom-color: var(--teal);
 }
 
+/* Pushes the login button to the right side of the nav bar  */
 .nav-login { margin-left: 20px; }
 
+/* Login button, styled as a teal rounded pill  */
 .login-btn {
   background: var(--teal);
   color: white !important;
@@ -89,7 +98,7 @@ nav ul li a:hover {
   color: white !important;
 }
 
-/* Main layout */
+/* Main content single centered block of search function  */
 main {
   display: flex;
   gap: 24px;
@@ -101,7 +110,7 @@ main {
   align-items: flex-start;
 }
 
-/* Main content */
+/*  White card that contains the ingredient input, filters, generate button  */
 .main-content {
   flex: 2;
   background: white;
@@ -109,6 +118,7 @@ main {
   border: 1px solid #ddd;
 }
 
+/* Page heading "What's in your kitchen?"  */
 .main-content h2 {
   font-size: 2rem;
   font-weight: 700;
@@ -116,25 +126,28 @@ main {
   margin-bottom: 10px;
 }
 
+/* Subtitle below the heading */
 .main-content > p {
   color: var(--muted);
   font-size: 1rem;
   margin-bottom: 32px;
 }
 
-/* Ingredient section */
+/*  Light teal box containing the ingredient input section */
 .ingredient-section {
   background: var(--teal-light);
   padding: 24px;
   border: 1px solid var(--teal-mid);
 }
 
+/* Row that holds the text input and + Add button side by side */
 .input-row {
   display: flex;
   gap: 10px;
   margin-bottom: 16px;
 }
 
+/* Actual ingredient text input box  */
 .ingredient-input {
   flex: 1;
   padding: 11px 16px;
@@ -145,8 +158,10 @@ main {
   outline: none;
 }
 
+/* Teal border appears when the input box is focused  */
 .ingredient-input:focus { border-color: var(--teal); }
 
+/* The ""+ADD" button next to the input box                    */
 .add-btn {
   background: var(--teal);
   color: white;
@@ -160,7 +175,7 @@ main {
 
 .add-btn:hover { background: var(--teal-dark); }
 
-/* Tags */
+/* The row of pill tags that appear after adding ingredients */
 .tag-area {
   display: flex;
   flex-wrap: wrap;
@@ -168,6 +183,7 @@ main {
   min-height: 32px;
 }
 
+/* Individual ingredient tag pill  */
 .tag {
   background: var(--teal);
   color: white;
@@ -178,6 +194,7 @@ main {
   gap: 6px;
 }
 
+/* The X remove button inside each tag  */
 .tag button {
   background: none;
   border: none;
@@ -189,7 +206,7 @@ main {
 
 .tag button:hover { opacity: 0.7; }
 
-/* Filter section */
+/* Filter section that contains the cuisine type and dietary preference rows */
 .filter-section {
   margin-top: 28px;
   display: flex;
@@ -197,6 +214,7 @@ main {
   gap: 18px;
 }
 
+/* Section label above each filter row like "Cuisine Type"  */
 .filter-group h3 {
   font-size: 0.78rem;
   font-weight: 600;
@@ -206,12 +224,14 @@ main {
   margin-bottom: 10px;
 }
 
+/* Row of filtering pill buttons */
 .filter-pills {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
+/* Individual filter pill that are white by default  */
 .filter-pill {
   background: white;
   color: var(--charcoal);
@@ -222,44 +242,21 @@ main {
   transition: border-color 0.15s, color 0.15s, background 0.15s;
 }
 
+/* Hover state, blue border and text   */
 .filter-pill:hover {
   border-color: var(--teal);
   color: var(--teal);
 }
 
+/* Active selected state, filled blue when selected by the user and toggles on/off by script.js when a pill is clicked  */
 .filter-pill.active {
   background: var(--teal);
   color: white;
   border-color: var(--teal);
 }
 
-/* Sidebar */
-aside {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  position: sticky;
-  top: 72px;
-}
 
-aside blockquote {
-  background: var(--teal);
-  color: white;
-  padding: 24px;
-  font-style: italic;
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-
-aside img {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-  max-height: 280px;
-}
-
-/* Page content (About, Contact) */
+/* Page content style for About currently */
 .page-content {
   max-width: 760px;
   margin: 40px auto;
@@ -268,6 +265,7 @@ aside img {
   border: 1px solid #ddd;
 }
 
+/* Page heading for About page  */
 .page-content h2 {
   font-size: 1.8rem;
   color: var(--charcoal);
@@ -276,13 +274,14 @@ aside img {
   border-bottom: 2px solid var(--teal-light);
 }
 
+/* Body text paragraphs on About page */
 .page-content p {
   color: var(--muted);
   margin-bottom: 16px;
   line-height: 1.8;
 }
 
-/* About cards */
+/* Two column grid of info cards on the About page */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -290,6 +289,7 @@ aside img {
   margin-top: 24px;
 }
 
+/* Individual about card, light teal background */
 .about-card {
   background: var(--teal-light);
   padding: 20px;
@@ -304,7 +304,7 @@ aside img {
 
 .about-card p { font-size: 0.9rem; margin: 0; }
 
-/* Contact form */
+/* Contact form layout (if we add one) having stacked fields with a submit button at the bottom */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -319,6 +319,7 @@ aside img {
   margin-bottom: 4px;
 }
 
+/* Input and textarea fields on the contact form */
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -331,9 +332,11 @@ aside img {
   resize: vertical;
 }
 
+/* Teal border on focus for contact form fields */
 .contact-form input:focus,
 .contact-form textarea:focus { border-color: var(--teal); }
 
+/* Submit button on the contact form  */
 .contact-form button {
   align-self: flex-start;
   background: var(--teal);
@@ -347,24 +350,6 @@ aside img {
 
 .contact-form button:hover { background: var(--teal-dark); }
 
-/* Tooltip */
-#preview-tooltip {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--charcoal);
-  color: white;
-  padding: 7px 18px;
-  font-size: 0.85rem;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s;
-  white-space: nowrap;
-  z-index: 999;
-}
-
-#preview-tooltip.visible { opacity: 1; }
 
 /* Footer */
 footer {
@@ -374,4 +359,26 @@ footer {
   padding: 16px;
   font-size: 0.85rem;
   margin-top: auto;
+}
+
+/* Generate button: sits below the filter pills */
+#generate-btn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  background: var(--teal);
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#generate-btn:hover { background: var(--teal-dark); }
+
+/* Results area, where Gemini's recipe text gets displayed */
+#results-area {
+  margin-top: 24px;
+  line-height: 1.8;
+  color: var(--charcoal);
 }
