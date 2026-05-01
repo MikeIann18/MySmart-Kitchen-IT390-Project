@@ -23,10 +23,12 @@
   </nav>
 
   <main>
-    <div class="main-content">
-      <!-- Placeholder login page database/auth to be connected later -->
+    <div class="page-content">
       <h2>Login</h2>
-      <p>Login functionality coming soon.</p>
+      <p>Sign in with your Google account to save and access your recipes.</p>
+       <!-- This is the only thing added that is different from Sprint 2 which is this actual button and connection to status element   -->
+      <button id="google-login-btn" onclick="googleLogin()">Sign in with Google</button>
+      <p id="login-status"></p>
     </div>
   </main>
 
@@ -36,12 +38,12 @@
 
   <script src="script.js"></script>
 
-    <!-- Firebase SDK: BELOW IS THE CODE FOR FIREBASE LOGIN-->
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <!-- Firebase SDK that loads Google's Firebase libraries from their public CDN, these URL's are the same for everyone using Firebase -->
+ <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 
   <script>
-    // Firebase config — pasted values from firebase "general"
+    // Firebase config — paste your values from Firebase console here
     const firebaseConfig = {
       apiKey: "AIzaSyCZ5wjHyM5zhLEaJKHVXVadTL1nkVuu3aM",
       authDomain: "mysmartkitchen-aa333.firebaseapp.com",
