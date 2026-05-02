@@ -1,27 +1,23 @@
-// Primary and backup models (tries in order if one fails)
-const BACKUP_MODELS = ["gemini-2.5-pro", "gemini-2.5-flash"];
-let backupIndex = 0;
-
-// The Gemini API endpoint we send requests to
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`;
+// Cloud Function URL — points to our backend on Google Cloud
+// The API key and backup model logic now live on this server, not in the browser
+const CLOUD_FUNCTION_URL = "https://us-east1-project-f59aa424-8886-4abc-8f0.cloudfunctions.net/generateRecipes";
 
 async function generateRecipes() {
-
-    // Check that user actually added ingredients before calling API
+    // Check that user actually added ingredients before calling the Cloud Function
     if (ingredients.length === 0) {
         alert("Please add at least one ingredient first.");
         return;
     }
 
-    // Show a loading spinner while waiting for Gemini to respond
+    // Show a loading spinner while waiting for the Cloud Function to respond
     document.getElementById("results-area").innerHTML = `
         <div class="results-loading">
             <div class="loading-spinner"></div>
             Generating recipes…
         </div>`;
 
-    // Sends instructions to Gemini and requests 3 recipe options
-    // Also connects the filter section for cuisine and dietary restrictions
+    // Builds the prompt using the ingredients array and any active filters from script.js
+    // This prompt gets sent to our Cloud Function, which forwards it to Gemini
     const prompt = `
         You are a professional recipe developer. Generate 3 recipes using: ${ingredients.join(", ")}.
         ${activeFilters.cuisine ? `Cuisine: ${activeFilters.cuisine}.` : ''}
@@ -56,60 +52,32 @@ async function generateRecipes() {
     `;
 
     try {
-        // Sending the prompt using fetch() to Gemini's API
-        const response = await fetch(GEMINI_URL, {
+        // Sends just the prompt to our Cloud Function — no API key leaves the browser
+        // The Cloud Function handles the Gemini request and backup models on the server
+        const response = await fetch(CLOUD_FUNCTION_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                contents: [{ parts: [{ text: prompt }] }]
-            })
+            // Only sending { prompt } — simpler than before because the server handles the rest
+            body: JSON.stringify({ prompt: prompt })
         });
 
-        // Parse the response Gemini sends back
+        // Cloud Function returns { recipe: "..." } instead of Gemini's nested response structure
         const data = await response.json();
 
-        // Check if the API returned an error instead of recipes
-        if (!response.ok || !data.candidates) {
-            // If the primary model failed, try backup models (pro then flash) before giving up
-            console.warn("Primary model failed:", data.error?.message);
-
-            if (backupIndex < BACKUP_MODELS.length) {
-                const backupURL = `https://generativelanguage.googleapis.com/v1beta/models/${BACKUP_MODELS[backupIndex]}:generateContent?key=${GEMINI_API_KEY}`;
-                backupIndex++;
-                const retry = await fetch(backupURL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: prompt }] }]
-                    })
-                });
-                const retryData = await retry.json();
-
-                // If the backup model worked, show recipes and reset for next time
-                if (retry.ok && retryData.candidates) {
-                    displayResults(retryData.candidates[0].content.parts[0].text);
-                    backupIndex = 0;
-                    return;
-                }
-            }
-
-            // All models failed — show the error to the user
+        // If all models failed on the server, the Cloud Function returns { error: "..." }
+        if (data.error) {
             document.getElementById("results-area").innerHTML = `
                 <div class="results-error">
-                    API error: ${data.error?.message || "All models failed."}
+                    API error: ${data.error}
                     <small>Check the console for details.</small>
                 </div>`;
-            backupIndex = 0;
             return;
         }
 
-        // Extract the actual text from Gemini's response structure
-        const recipeText = data.candidates[0].content.parts[0].text;
+        // data.recipe contains the recipe HTML that Gemini generated
+        displayResults(data.recipe);
 
-        // Display the results on the page
-        displayResults(recipeText);
-
-    // If something goes wrong like no internet or a bad key
+    // If the Cloud Function itself is unreachable (no internet, server down, etc.)
     } catch (error) {
         document.getElementById("results-area").innerHTML = `
             <div class="results-error">
