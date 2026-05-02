@@ -1,6 +1,15 @@
-import { app } from "./config.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+export const app = initializeApp({
+  apiKey: "AIzaSyCZ5wjHyM5zhLEaJKHVXVadTL1nkVuu3aM",
+  authDomain: "mysmartkitchen-aa333.firebaseapp.com",
+  projectId: "mysmartkitchen-aa333",
+  storageBucket: "mysmartkitchen-aa333.firebasestorage.app",
+  messagingSenderId: "456781151739",
+  appId: "1:456781151739:web:a56215325e6075bec99f5e"
+});
 
 const auth = getAuth(app);
 
