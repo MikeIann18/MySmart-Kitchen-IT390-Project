@@ -88,9 +88,18 @@ async function generateRecipes() {
     }
 }
 
+// Displays the generated recipe results on the page
 function displayResults(recipeText) {
-    // Strip any accidental markdown code fences Gemini may add
+
+    // Removes unwanted markdown code formatting if Gemini adds it
     const clean = recipeText.replace(/```html|```/gi, "").trim();
-    // Replaces the results area with the cleaned recipe HTML
-    document.getElementById("results-area").innerHTML = clean;
+
+    // Shows recipes and adds a save button below them
+    document.getElementById("results-area").innerHTML = `
+      ${clean}
+
+      <button id="save-recipes-btn" class="add-btn" style="margin-top:20px;">
+        Save These Recipes
+      </button>
+    `;
 }
