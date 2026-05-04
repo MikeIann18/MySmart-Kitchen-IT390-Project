@@ -1,9 +1,18 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+// Import Firebase core app initializer
+import { initializeApp } 
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
+// Import Firebase Authentication functions
 import { getAuth, onAuthStateChanged, signOut }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
+// Import Firestore database
+import { getFirestore }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// Start Firebase using our project settings
 export const app = initializeApp({
-  apiKey: "AIzaSyCZ5wjHyM5zhLEaJKHVXVadTL1nkVuu3aM",
+  apiKey: "YOUR_API_KEY",
   authDomain: "mysmartkitchen-aa333.firebaseapp.com",
   projectId: "mysmartkitchen-aa333",
   storageBucket: "mysmartkitchen-aa333.firebasestorage.app",
@@ -11,15 +20,21 @@ export const app = initializeApp({
   appId: "1:456781151739:web:a56215325e6075bec99f5e"
 });
 
+// Create Firebase Authentication object
 const auth = getAuth(app);
 
-// Update the nav login button based on auth state
+// Create Firestore database object
+const db = getFirestore(app);
+
+// Checks if user is logged in or logged out
 onAuthStateChanged(auth, (user) => {
   const navLogin = document.querySelector(".nav-login");
   if (!navLogin) return;
 
   if (user) {
+    // If user is logged in, show their name and logout button
     const displayName = user.displayName || user.email.split("@")[0];
+
     navLogin.innerHTML = `
       <span style="font-size:0.85rem; color:var(--muted); margin-right:10px;">
         Hi, ${displayName}
@@ -30,18 +45,16 @@ onAuthStateChanged(auth, (user) => {
       </button>
     `;
   } else {
+    // If user is not logged in, show login button
     navLogin.innerHTML = `<a href="login.html" class="login-btn">Login</a>`;
   }
-
-  // Show/hide saved recipes section if it exists on the page
-  const savedArea = document.getElementById("saved-area");
-  if (savedArea) savedArea.style.display = user ? "block" : "none";
 });
 
-// Logout handler
+// Logout function
 window.__firebaseLogout = async () => {
   await signOut(auth);
   window.location.href = "login.html";
 };
 
-export { auth };
+// Export auth and db so other files can use them
+export { auth, db };
