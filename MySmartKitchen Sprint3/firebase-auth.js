@@ -12,7 +12,7 @@ import { getFirestore }
 
 // Start Firebase using our project settings
 export const app = initializeApp({
-  apiKey: "YOUR_API_KEY",
+  apiKey: "AIzaSyCZ5wjHyM5zhLEaJKHVXVadTL1nkVuu3aM",
   authDomain: "mysmartkitchen-aa333.firebaseapp.com",
   projectId: "mysmartkitchen-aa333",
   storageBucket: "mysmartkitchen-aa333.firebasestorage.app",
