@@ -21,12 +21,20 @@ document.addEventListener("click", async (e) => {
     return;
   }
 
-  // Get the generated recipe content from the results area
-  const resultsArea = document.getElementById("results-area");
-  const recipeHTML = resultsArea.innerHTML;
+  // Get only the generated recipe cards, not the save button
+  const recipeGrid = document.querySelector("#results-area .recipe-grid");
+
+  // If there are no generated recipes, stop
+  if (!recipeGrid) {
+    alert("Generate recipes first before saving.");
+    return;
+  }
+
+  // Store the generated recipe HTML
+  const recipeHTML = recipeGrid.outerHTML;
 
   try {
-    // Save the recipe under the logged-in user's Firestore document
+    // Save the recipe under the logged-in user's Firestore account
     await addDoc(collection(db, "users", user.uid, "savedRecipes"), {
       recipeHTML: recipeHTML,
       savedAt: serverTimestamp()
