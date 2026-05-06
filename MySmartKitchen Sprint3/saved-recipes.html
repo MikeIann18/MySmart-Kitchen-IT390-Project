@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Makes page responsive on phones and laptops -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Saved Recipes - My Smart Kitchen</title>
+
+  <!-- Connects this page to the main stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Main website header -->
+  <header>
+    <h1>My Smart Kitchen</h1>
+  </header>
+
+  <!-- Navigation bar -->
+  <nav>
+    <ul>
+      <li><a href="SmartKitchen.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="inventory.html">Inventory</a></li>
+      <li><a href="saved-recipes.html">Saved Recipes</a></li>
+    </ul>
+
+    <!-- This gets updated by firebase-auth.js after login -->
+    <div class="nav-login">
+      <a href="login.html" class="login-btn">Login</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="main-content">
+
+      <!-- Page title -->
+      <h2>Saved Recipes</h2>
+
+      <!-- Short page description -->
+      <p>View recipes you previously saved from My Smart Kitchen.</p>
+
+      <!-- This message shows while Firestore is loading recipes -->
+      <div id="saved-recipes-status" class="results-loading">
+        Loading saved recipes...
+      </div>
+
+      <!-- Firestore saved recipes will be displayed here -->
+      <div id="saved-recipes-list" class="recipe-grid"></div>
+
+    </div>
+  </main>
+
+  <footer>
+    © 2026 My Smart Kitchen | Privacy Notice
+  </footer>
+
+  <!-- Updates login/logout navigation -->
+  <script type="module" src="firebase-auth.js"></script>
+
+  <!-- Loads saved recipes from Firestore -->
+  <script type="module" src="saved-recipes-page.js"></script>
+
+</body>
+</html>
