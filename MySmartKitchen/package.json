@@ -1,0 +1,7 @@
+{
+  "name": "smart-kitchen-backend",
+  "version": "1.0.0",
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.1.0"
+  }
+}
