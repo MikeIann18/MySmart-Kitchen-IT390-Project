@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Ingredient Inventory - My Smart Kitchen</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="font-family: Arial, sans-serif; background: #faf8f4; color: #1e2a2d; min-height: 100vh; display: flex; flex-direction: column; line-height: 1.6; margin: 0;">
+
+  <header style="background: #2f918e; color: white; padding: 22px 40px; text-align: center;">
+    <h1 style="font-size: 3rem; font-weight: 700; margin: 0;">My Smart Kitchen</h1>
+  </header>
+
+  <nav style="background: white; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; border-bottom: 1px solid #b2e0ec; position: sticky; top: 0; z-index: 100;">
+    <ul style="list-style: none; display: flex; gap: 4px; margin: 0; padding: 0;">
+      <li><a href="SmartKitchen.html" style="display: block; color: #5a7a82; text-decoration: none; font-weight: 500; font-size: 0.92rem; padding: 18px 16px; border-bottom: 2px solid transparent;">Home</a></li>
+      <li><a href="about.html" style="display: block; color: #5a7a82; text-decoration: none; font-weight: 500; font-size: 0.92rem; padding: 18px 16px; border-bottom: 2px solid transparent;">About</a></li>
+      <li><a href="inventory.html" style="display: block; color: #085a6e; text-decoration: none; font-weight: 600; font-size: 0.92rem; padding: 18px 16px; border-bottom: 2px solid #2f918e;">Inventory</a></li>
+      <li><a href="saved-recipes.html" style="display: block; color: #5a7a82; text-decoration: none; font-weight: 500; font-size: 0.92rem; padding: 18px 16px; border-bottom: 2px solid transparent;">Saved Recipes</a></li>
+    </ul>
+    <div class="nav-login" style="margin-left: 20px;">
+      <a href="login.html" class="login-btn" style="background: #2f918e; color: white; padding: 9px 22px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.875rem;">Login</a>
+    </div>
+  </nav>
+
+  <main class="inventory-page" style="flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 40px;">
+
+    <section class="inventory-hero top-hero" style="background: white; padding: 36px 40px; border: 1px solid #ddd; text-align: center; margin-bottom: 24px;">
+      <h2 style="font-size: 2rem; font-weight: 700; color: #1e2a2d; margin: 0 0 10px 0;">Kitchen Inventory</h2>
+      <p style="color: #5a7a82; font-size: 1rem; margin: 0;">Track your pantry items, monitor quantities, and keep an eye on expiration dates.</p>
+    </section>
+
+    <div class="inventory-grid" style="display: grid; grid-template-columns: 1fr 2fr; gap: 24px; align-items: start;">
+
+      <section class="inventory-form-section" style="background: white; padding: 28px; border: 1px solid #ddd;">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: #1e2a2d; margin: 0 0 18px 0; padding-bottom: 12px; border-bottom: 2px solid #e0f4f8;">Add New Item</h3>
+        <form id="inventory-form" style="display: flex; flex-direction: column; gap: 14px;">
+          <label for="item-name" style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #5a7a82;">Item Name</label>
+          <input type="text" id="item-name" name="item-name" placeholder="Enter item name" style="padding: 11px 16px; border: 1px solid #b2e0ec; font-size: 0.95rem; background: white; color: #1e2a2d; outline: none; font-family: inherit;">
+
+          <label for="quantity" style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #5a7a82;">Quantity</label>
+          <input type="number" id="quantity" name="quantity" placeholder="Enter quantity" style="padding: 11px 16px; border: 1px solid #b2e0ec; font-size: 0.95rem; background: white; color: #1e2a2d; outline: none; font-family: inherit;">
+
+          <label for="category" style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #5a7a82;">Category</label>
+          <select id="category" name="category" style="padding: 11px 16px; border: 1px solid #b2e0ec; font-size: 0.95rem; background: white; color: #1e2a2d; outline: none; font-family: inherit;">
+            <option value="">Select category</option>
+            <option value="Vegetable">Vegetable</option>
+            <option value="Fruit">Fruit</option>
+            <option value="Dairy">Dairy</option>
+            <option value="Meat">Meat</option>
+            <option value="Grain">Grain</option>
+            <option value="Spice">Spice</option>
+            <option value="Snack">Snack</option>
+            <option value="Drink">Drink</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <label for="expiry-date" style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #5a7a82;">Expiration Date</label>
+          <input type="date" id="expiry-date" name="expiry-date" style="padding: 11px 16px; border: 1px solid #b2e0ec; font-size: 0.95rem; background: white; color: #1e2a2d; outline: none; min-height: 44px; cursor: pointer;">
+
+          <button type="submit" style="background: #2f918e; color: white; border: none; padding: 12px 22px; font-size: 0.95rem; font-weight: 600; cursor: pointer; margin-top: 8px;">Add Item</button>
+        </form>
+      </section>
+
+      <section class="inventory-table-section" style="background: white; padding: 28px; border: 1px solid #ddd;">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: #1e2a2d; margin: 0 0 18px 0; padding-bottom: 12px; border-bottom: 2px solid #e0f4f8;">Current Inventory</h3>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem;">
+            <thead>
+              <tr style="background: #e0f4f8;">
+                <th style="padding: 12px 14px; text-align: left; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #5a7a82; border-bottom: 1px solid #b2e0ec;">Item Name</th>
+                <th style="padding: 12px 14px; text-align: left; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #5a7a82; border-bottom: 1px solid #b2e0ec;">Quantity</th>
+                <th style="padding: 12px 14px; text-align: left; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #5a7a82; border-bottom: 1px solid #b2e0ec;">Category</th>
+                <th style="padding: 12px 14px; text-align: left; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #5a7a82; border-bottom: 1px solid #b2e0ec;">Expiration Date</th>
+                <th style="padding: 12px 14px; text-align: left; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #5a7a82; border-bottom: 1px solid #b2e0ec;">Status</th>
+                <th style="padding: 12px 14px; text-align: left; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #5a7a82; border-bottom: 1px solid #b2e0ec;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="inventory-table-body"></tbody>
+          </table>
+        </div>
+
+        <button id="clear-all" style="background: white; color: #2f918e; border: 1px solid #2f918e; padding: 9px 20px; font-size: 0.875rem; font-weight: 600; cursor: pointer; margin-top: 18px;">Clear All</button>
+      </section>
+
+      <section class="inventory-info" style="grid-column: 1 / -1; background: #e0f4f8; padding: 24px 28px; border: 1px solid #b2e0ec;">
+        <h3 style="font-size: 1rem; font-weight: 700; color: #054555; margin: 0 0 10px 0;">Smart Kitchen Features</h3>
+        <p style="color: #1e2a2d; margin: 0; font-size: 0.95rem; line-height: 1.7;">
+          This page helps users organize the ingredients they currently have, reduce food waste, and track low-stock or expiring items.
+       </p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer style="background: #054555; color: white; padding: 20px 40px; text-align: center; margin-top: 40px;">
+    <p style="margin: 0; font-size: 0.875rem;">&copy; 2025 My Smart Kitchen. All rights reserved.</p>
+  </footer>
+
+  <script type="module" src="firebase-auth.js"></script>
+  <script type="module" src="inventory.js"></script>
+</body>
+</html>
